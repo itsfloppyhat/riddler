@@ -6,8 +6,8 @@ app = Flask(__name__)
 @app.route('/riddler')
 def get_piece_location(img1Url, img2Url):
     # read the images
-    img1 = cv2.imread(img1Url)  
-    img2 = cv2.imread(img2Url)
+    img1 = cv2.imread("../assets/" + img1Url)  
+    img2 = cv2.imread("../assets/" + img2Url)
 
     # convert images to grayscale
     img1 = cv2.cvtColor(img1, cv2.COLOR_BGR2GRAY)
