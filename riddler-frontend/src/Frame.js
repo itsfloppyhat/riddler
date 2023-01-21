@@ -22,7 +22,7 @@ const Frame = ({ title, image, setImage, isPiece, send, current }) => {
         onChange={(event) => {
           setImage(event.target.files[0]);
           if (isPiece) {
-            console.log('uploaded the piece');
+            send('piece_is_loaded');
           } else {
             send('picture_is_loaded');
           }
