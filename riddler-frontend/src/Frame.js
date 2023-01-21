@@ -1,12 +1,7 @@
 import React, { useContext, useState } from 'react';
-import { useMachine } from '@xstate/react';
-import promiseMachine from './XState/XState.js';
 
-const Frame = ({ title, image, setImage, isPiece }) => {
-  const [current, send] = useMachine(promiseMachine);
-
-  console.log(current);
-
+const Frame = ({ title, image, setImage, isPiece, send, current }) => {
+  console.log(current.value);
   return (
     <div class='frame'>
       <h1>{title}</h1>
@@ -23,12 +18,13 @@ const Frame = ({ title, image, setImage, isPiece }) => {
       <input
         type='file'
         name='myImage'
-        disabled={current.matches('idle') ? false : true}
+        disabled={current.matches('upload_puzzle') && isPiece ? true : false}
         onChange={(event) => {
-          console.log(event.target.files[0]);
           setImage(event.target.files[0]);
           if (isPiece) {
             console.log('uploaded the piece');
+          } else {
+            send('picture_is_loaded');
           }
         }}
       />
