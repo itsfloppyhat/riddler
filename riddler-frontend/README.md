@@ -71,3 +71,6 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
 
 ### State Machine Diagram
 - https://stately.ai/registry/editor/c3597e46-9022-446c-9cb3-4a5d7ac5460e?machineId=813fdcbc-1a5d-4f0a-a39b-e0d6a6e0852b
+
+### Execute python in react
+- https://www.youtube.com/watch?v=VFLeF5Pu34A
