@@ -1,9 +1,11 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { AppProvider, useAppContext } from './Context';
 import Frame from './Frame';
 import Popup from 'reactjs-popup';
 import 'reactjs-popup/dist/index.css';
 import CustomPopup from './CustomPopup';
+import MyPopup from './MyPopup';
+import axios from 'axios';
 
 const Main = () => {
   const { puzzleImage, pieceImage, setPuzzleImage, setPieceImage, send, current } = useAppContext();

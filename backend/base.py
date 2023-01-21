@@ -1,13 +1,18 @@
 from flask import Flask
 import cv2
+from flask import send_file
 
 app = Flask(__name__)
 
-@app.route('/riddler')
-def get_piece_location(img1Url, img2Url):
+@app.route('/')
+def print_hello():
+    return "Hello"
+
+@app.route('/riddler', methods=["GET", "POST"])
+def get_piece_location():
     # read the images
-    img1 = cv2.imread("../assets/" + img1Url)  
-    img2 = cv2.imread("../assets/" + img2Url)
+    img1 = cv2.imread("../assets/" + '2.jpg')  
+    img2 = cv2.imread("../assets/" + 'scene.png')
 
     # convert images to grayscale
     img1 = cv2.cvtColor(img1, cv2.COLOR_BGR2GRAY)
@@ -33,19 +38,14 @@ def get_piece_location(img1Url, img2Url):
     matched_img = cv2.drawMatches(img1, keypoints_1, img2, keypoints_2, matches[:5], img2, flags=2)
 
     # show the image
-    cv2.imshow('image', matched_img)
+    #cv2.imshow('image', matched_img)
 
     # save the image
-    cv2.imwrite("matched_images.jpg", matched_img)
+    cv2.imwrite("../assets/matched_images.jpg", matched_img)
     cv2.waitKey(0)
     cv2.destroyAllWindows()
 
-    response_body = {
-        "name": "Nagato",
-        "about" :"Hello! I'm a full stack developer that loves python and javascript"
-    }
-
-    return response_body
+    return send_file(matched_img, mimetype='image/jpg')
 
 if __name__ == "__main__":
     app.run(debug=True)
